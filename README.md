@@ -1,27 +1,19 @@
-# PROJECT TITLE
+# AI ENGINEERING
 
-TODO: Add a short description of the project.
-It should include the following:
-- What this repository is
-- Who is it for
-- What are the dependencies 
+This is a repository for the AI Engineering team to share code with customers and the community.  This ranges from simple example API snippets to demonstrations and end to end tutorials and associated code.
+
 
 ## Usage
 
-TODO: Specify how to use this project
-This can include running the scripts, or where to find API docs if it's a library, command line tool, or similar.
+Multiple integrations and projects will be hosted within this repo, see individual readmes in subfolders for details relevant to those individual entries.
+
 
 ## Repository Contents
 
-TODO: Specify what this repository contains, for example if it contains multiple self contained sub-projects, like with Notebooks scripts that can be used independently.
 
-In some cases you can skip this section.
 
-## Setup/Installation
 
-TODO: Specify what's required to set this project up for usage
 
-In some cases you can skip this section.
 
 ## Development and Contributing
 
