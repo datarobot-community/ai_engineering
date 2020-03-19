@@ -11,7 +11,7 @@ Contributors to this project are limited to DataRobot employees, in particular t
 
 ## Opening new issues
 
-- Before opening a new issue check if there are any existing FAQ entries (if one exists), issues or pull requests that match your case
+- Before [opening a new issue](https://github.com/datarobot-community/ai_engineering/issues) check if there are any existing github FAQ entries (if one exists), issues or pull requests that match your case
 - Open an issue, and make sure to label the issue accordingly - bug, improvement, feature request, etc...
 - Be as specific and detailed as possible
 
