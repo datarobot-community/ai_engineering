@@ -11,8 +11,7 @@ Multiple integrations and projects will be hosted within this repo, see individu
 ## Repository Contents
 
 
-
-
+- [Snowflake model creation and scoring](https://github.com/datarobot-community/ai_engineering/tree/master/databases/snowflake)
 
 
 ## Development and Contributing
