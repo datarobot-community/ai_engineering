@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "fb0ff7a3-3ad2-40ae-b47d-4d6cc2395967",
+		"name": "DR Custom Models",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "local binary custom model prediction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "text/plain"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "positiveClassLabel",
+							"value": "True",
+							"type": "text"
+						},
+						{
+							"key": "negativeClassLabel",
+							"value": "False",
+							"type": "text"
+						},
+						{
+							"key": "X",
+							"contentType": "",
+							"type": "file",
+							"src": "/Users/felix.huthmacher/Documents/testdata/test1_binary_row_complete.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/1234/predict/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"1234",
+						"predict",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "local regression custom model prediction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "text/plain"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "X",
+							"contentType": "",
+							"type": "file",
+							"src": "/Users/felix.huthmacher/Documents/testdata/test1_regression_row_OneColumnString.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/1234/predict/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"1234",
+						"predict",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "local custom model webserver check status",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DR binary custom model predictions",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{API_TOKEN}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{USERNAME}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json; charset=UTF-8"
+					},
+					{
+						"key": "datarobot-key",
+						"type": "text",
+						"value": "{{datarobot-key}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\n    \"loan_amnt\": 4000,\n    \"funded_amnt\": 4000,\n    \"term\": \"60 months\",\n    \"int_rate\": \"7.29%\",\n    \"installment\": 79.76,\n    \"grade\": \"A\",\n    \"sub_grade\": \"A4\",\n    \"emp_title\": \"Time Warner Cable\",\n    \"emp_length\": \"10+ years\",\n    \"home_ownership\": \"MORTGAGE\",\n    \"annual_inc\": 50000,\n    \"verification_status\": \"not verified\",\n    \"pymnt_plan\": 0,\n    \"url\": \"https://www.lendingclub.com/browse/loanDetail.action?loan_id=728956\",\n    \"desc\": \"\",\n    \"purpose\": \"medical\",\n    \"title\": \"Medical\",\n    \"zip_code\": \"766xx\",\n    \"addr_state\": \"TX\",\n    \"dti\": 10.87,\n    \"delinq_2yrs\": 0,\n    \"earliest_cr_line\": \"12/1/92\",\n    \"inq_last_6mths\": 0,\n    \"mths_since_last_delinq\": 0,\n    \"mths_since_last_record\": 0,\n    \"open_acc\": 15,\n    \"pub_rec\": 0,\n    \"revol_bal\": 12087,\n    \"revol_util\": 12.1,\n    \"total_acc\": 44,\n    \"initial_list_status\": 0,\n    \"mths_since_last_major_derog\": 0,\n    \"policy_code\": 1,\n    \"is_bad\": 0\n},\n{\n    \"loan_amnt\": 4000,\n    \"funded_amnt\": 4000,\n    \"term\": \"60 months\",\n    \"int_rate\": \"7.29%\",\n    \"installment\": 79.76,\n    \"grade\": \"A\",\n    \"sub_grade\": \"A4\",\n    \"emp_title\": \"Time Warner Cable\",\n    \"emp_length\": \"10+ years\",\n    \"home_ownership\": \"MORTGAGE\",\n    \"annual_inc\": 50000,\n    \"verification_status\": \"not verified\",\n    \"pymnt_plan\": 0,\n    \"url\": \"https://www.lendingclub.com/browse/loanDetail.action?loan_id=728956\",\n    \"desc\": \"\",\n    \"purpose\": \"medical\",\n    \"title\": \"Medical\",\n    \"zip_code\": \"766xx\",\n    \"addr_state\": \"TX\",\n    \"dti\": 10.87,\n    \"delinq_2yrs\": 0,\n    \"earliest_cr_line\": \"12/1/92\",\n    \"inq_last_6mths\": 0,\n    \"mths_since_last_delinq\": 0,\n    \"mths_since_last_record\": 0,\n    \"open_acc\": 15,\n    \"pub_rec\": 0,\n    \"revol_bal\": 12087,\n    \"revol_util\": 12.1,\n    \"total_acc\": 44,\n    \"initial_list_status\": 0,\n    \"mths_since_last_major_derog\": 0,\n    \"policy_code\": 1,\n    \"is_bad\": 0\n}\n]"
+				},
+				"url": {
+					"raw": "{{PREDICTION_ENDPOINT}}/predApi/v1.0/deployments/{{DEPLOYMENT_ID}}/predictions",
+					"host": [
+						"{{PREDICTION_ENDPOINT}}"
+					],
+					"path": [
+						"predApi",
+						"v1.0",
+						"deployments",
+						"{{DEPLOYMENT_ID}}",
+						"predictions"
+					]
+				},
+				"description": "Makes a prediction using a dedicated prediction server and a deployment aware route. \nThus, basic metrics such as (#predictions, #requests, avg. response times etc) as well as data drift (if enabled) is tracked.\n\nSet PREDICTION_ENDPOINT, API_TOKEN, USERNAME, DEPLOYMENT_ID, datarobot-key as environment variable or replace variables with actual values to test this endpoint.\n\nPlease note, that datarobot-key is only required for PublicCloud.\n\nThis endpoint uses a model that has been created with the 10k diabetes sample dataset, which you can find here: https://s3.amazonaws.com/datarobot_public_datasets/10k_diabetes.xlsx"
+			},
+			"response": []
+		},
+		{
+			"name": "DR regression custom model predictions",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{API_TOKEN}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{USERNAME}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json; charset=UTF-8"
+					},
+					{
+						"key": "datarobot-key",
+						"type": "text",
+						"value": "{{datarobot-key}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n  {\n    \"vendor_id\": \"CMT\",\n    \"rate_code\": 1,\n    \"passenger_count\": 1,\n    \"trip_time_in_secs\": 1271,\n    \"trip_distance\": 3.8,\n    \"payment_type\": \"CRD\",\n    \"fare_amount\": 17.5\n  },\n  {\n    \"vendor_id\": \"CMT\",\n    \"rate_code\": 1,\n    \"passenger_count\": 1,\n    \"trip_time_in_secs\": 474,\n    \"trip_distance\": 1.5,\n    \"payment_type\": \"CRD\",\n    \"fare_amount\": 8\n  }\n]"
+				},
+				"url": {
+					"raw": "{{PREDICTION_ENDPOINT}}/predApi/v1.0/deployments/{{DEPLOYMENT_ID}}/predictions",
+					"host": [
+						"{{PREDICTION_ENDPOINT}}"
+					],
+					"path": [
+						"predApi",
+						"v1.0",
+						"deployments",
+						"{{DEPLOYMENT_ID}}",
+						"predictions"
+					]
+				},
+				"description": "Makes a prediction using a dedicated prediction server and a deployment aware route. \nThus, basic metrics such as (#predictions, #requests, avg. response times etc) as well as data drift (if enabled) is tracked.\n\nSet PREDICTION_ENDPOINT, API_TOKEN, USERNAME, DEPLOYMENT_ID, datarobot-key as environment variable or replace variables with actual values to test this endpoint.\n\nPlease note, that datarobot-key is only required for PublicCloud.\n\nThis endpoint uses a model that has been created with the 10k diabetes sample dataset, which you can find here: https://s3.amazonaws.com/datarobot_public_datasets/10k_diabetes.xlsx"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
