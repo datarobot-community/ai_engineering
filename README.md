@@ -12,6 +12,8 @@ Multiple integrations and projects will be hosted within this repo, see individu
 
 
 - [Snowflake model creation and scoring](https://github.com/datarobot-community/ai_engineering/tree/master/databases/snowflake)
+- [Athena samples](https://github.com/datarobot-community/ai_engineering/tree/master/databases/athena)
+- [MLNET examples](https://github.com/datarobot-community/ai_engineering/tree/master/mlops)
 
 
 ## Development and Contributing
