@@ -1,1 +1,6 @@
 .DS_Store
+**/.vscode/
+**.DS_store
+*.log
+**/appsettings.json
+**/launchSettings.json
