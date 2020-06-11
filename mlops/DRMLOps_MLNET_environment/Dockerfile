@@ -10,6 +10,6 @@ RUN dotnet publish "WebServer.csproj" -c Release
 #COPY --from=build /app .
 # old version without dotnet watch
 #COPY --from=build /app/publish .
-RUN chmod -R 755 .
+RUN chmod -R 777 .
 
 ENTRYPOINT ["./start_server.sh", "&"]
