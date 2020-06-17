@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="LoadTest" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Portable Prediction Server Test" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1000</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/json; charset=UTF-8</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Make prediction http request" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">[&#xd;
+  {&#xd;
+    &quot;id&quot;: 1,&#xd;
+    &quot;loan_amnt&quot;: 4000,&#xd;
+    &quot;funded_amnt&quot;: 4000,&#xd;
+    &quot;term&quot;: &quot;60 months&quot;,&#xd;
+    &quot;int_rate&quot;: &quot;7.29%&quot;,&#xd;
+    &quot;installment&quot;: 79.76,&#xd;
+    &quot;grade&quot;: &quot;A&quot;,&#xd;
+    &quot;sub_grade&quot;: &quot;A4&quot;,&#xd;
+    &quot;emp_title&quot;: &quot;Time Warner Cable&quot;,&#xd;
+    &quot;emp_length&quot;: &quot;10+ years&quot;,&#xd;
+    &quot;home_ownership&quot;: &quot;MORTGAGE&quot;,&#xd;
+    &quot;annual_inc&quot;: 50000,&#xd;
+    &quot;verification_status&quot;: &quot;not verified&quot;,&#xd;
+    &quot;pymnt_plan&quot;: &quot;n&quot;,&#xd;
+    &quot;url&quot;: &quot;https://www.lendingclub.com/browse/loanDetail.action?loan_id=728956&quot;,&#xd;
+    &quot;desc&quot;: &quot;&quot;,&#xd;
+    &quot;purpose&quot;: &quot;medical&quot;,&#xd;
+    &quot;title&quot;: &quot;Medical&quot;,&#xd;
+    &quot;zip_code&quot;: &quot;766xx&quot;,&#xd;
+    &quot;addr_state&quot;: &quot;TX&quot;,&#xd;
+    &quot;dti&quot;: 10.87,&#xd;
+    &quot;delinq_2yrs&quot;: 0,&#xd;
+    &quot;earliest_cr_line&quot;: &quot;12/1/92&quot;,&#xd;
+    &quot;inq_last_6mths&quot;: 0,&#xd;
+    &quot;mths_since_last_delinq&quot;: &quot;NA&quot;,&#xd;
+    &quot;mths_since_last_record&quot;: &quot;NA&quot;,&#xd;
+    &quot;open_acc&quot;: 15,&#xd;
+    &quot;pub_rec&quot;: 0,&#xd;
+    &quot;revol_bal&quot;: 12087,&#xd;
+    &quot;revol_util&quot;: 12.1,&#xd;
+    &quot;total_acc&quot;: 44,&#xd;
+    &quot;initial_list_status&quot;: &quot;f&quot;,&#xd;
+    &quot;mths_since_last_major_derog&quot;: &quot;NA&quot;,&#xd;
+    &quot;policy_code&quot;: 1,&#xd;
+    &quot;is_bad&quot;: 0,&#xd;
+    &quot;is_bad_actual&quot;: 0&#xd;
+  }&#xd;
+]</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/predictions</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
