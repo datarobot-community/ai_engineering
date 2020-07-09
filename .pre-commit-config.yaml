@@ -1,0 +1,15 @@
+repos:
+-   repo: https://github.com/PyCQA/flake8
+    rev: 3.8.3
+    hooks:
+    - id: flake8
+      additional_dependencies: [Dlint==0.10.3]
+-   repo: https://github.com/Yelp/detect-secrets
+    rev: v0.13.1
+    hooks:
+    - id: detect-secrets
+      args: ['--baseline', '.secrets.baseline', '--base64-limit', '4.5', '--hex-limit', '3']
+-   repo: https://github.com/PyCQA/bandit
+    rev: 1.6.2
+    hooks:
+    - id: bandit
