@@ -1,0 +1,728 @@
+// scss-lint:disable IdSelector PlaceholderInExtend NestingDepth QualifyingElement SelectorDepth ImportantRule SelectorFormat
+%font-awesome {
+  display: inline-block;
+  font-family: 'Font Awesome\ 5 Free';
+  margin-right: 5px;
+}
+
+%admin-form {
+  @extend .p-3;
+  @extend .mt-3;
+  background: $changeform-bg;
+  border: 1px solid $changeform-border-color;
+  clear: both;
+  overflow: auto;
+
+  h3 {
+    font-size: $h3-size;
+  }
+
+  .form-row {
+    @extend .form-group;
+    background: $field-bg;
+    margin-bottom: .5rem;
+    padding: 1rem .5rem;
+
+    &.errors {
+      background: $field-row-error-bg;
+
+      .errorlist {
+        @extend .pt-2;
+        padding-left: 1.2rem;
+        width: 100%;
+
+        li {
+          color: $danger-fg !important;
+          font-weight: bold;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    > div {
+      align-items: flex-start;
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      &.checkbox-row {
+        input {
+          margin-top: 5px;
+          order: 2;
+        }
+
+        label {
+          order: 1;
+        }
+
+        .help {
+          order: 3;
+        }
+      }
+    }
+
+    .date-icon {
+      &::before {
+        @extend %font-awesome;
+        content: '\f073';
+      }
+    }
+
+    .clock-icon {
+      &::before {
+        @extend %font-awesome;
+        content: '\f017';
+      }
+    }
+
+    .datetime {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0;
+
+      input {
+        margin: 0 10px;
+      }
+
+      a + a {
+        @extend .mr-3;
+      }
+
+      .datetimeshortcuts {
+        align-self: center;
+        white-space: nowrap;
+      }
+
+      .timezonewarning {
+        margin-left: 0 !important;
+        white-space: nowrap;
+        width: 0;
+      }
+    }
+
+    .datetimeshortcuts {
+      align-self: center;
+
+      + .newline,
+      + br {
+        content: '';
+        display: block;
+        height: .5rem;
+        width: 100%;
+      }
+    }
+
+    .timezonewarning {
+      @extend .py-0;
+
+      align-self: center;
+      color: $warning-fg;
+      display: block;
+      margin: .2rem 0;
+      padding-left: 1px;
+
+      @include media-breakpoint-up(md) {
+        margin-left: 20%;
+      }
+
+      @include media-breakpoint-up(lg) {
+        margin-left: 10%;
+      }
+    }
+
+    .related-widget-wrapper {
+      display: flex;
+      flex-direction: row;
+      flex-grow: 1;
+
+      + p /* django 1.11 */ {
+        flex-basis: 100%;
+        margin-left: 0 !important;
+
+        @include media-breakpoint-up(md) {
+          margin-left: 20% !important;
+        }
+
+        @include media-breakpoint-up(lg) {
+          margin-left: 10% !important;
+        }
+      }
+
+      .add-related {
+        margin-left: 15px;
+        margin-right: 15px;
+        order: 2;
+      }
+    }
+
+    // selector
+    .selector {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+
+      &.stacked {
+        flex-direction: column;
+
+        .selector-chooser {
+          display: flex;
+          flex-direction: row;
+          margin: 15px 0;
+          width: auto;
+
+          .selector-add {
+            background: url('/static/admin/img/selector-icons.svg') 0 -32px no-repeat; // 46
+
+            &.active {
+              background: url('/static/admin/img/selector-icons.svg') 0 -48px no-repeat; // 46
+            }
+          }
+
+          .selector-remove {
+            background: url('/static/admin/img/selector-icons.svg') 0 0 no-repeat; // 46
+
+            &.active {
+              background: url('/static/admin/img/selector-icons.svg') 0 -16px no-repeat; // 46
+            }
+          }
+        }
+      }
+
+      .help-icon {
+        background: url('/static/admin/img/icon-unknown.svg') 0 0 no-repeat;
+        cursor: help;
+        display: inline-block;
+        height: 13px;
+        margin: -2px 0 0 2px;
+        vertical-align: middle;
+        width: 13px;
+      }
+    }
+
+    .selector-filter {
+      align-items: center;
+      border-left: 1px solid $selector-item-border-color;
+      border-right: 1px solid $selector-item-border-color;
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 0;
+      padding: 5px;
+
+      label {
+        margin-bottom: 0;
+        padding-right: 2px !important;
+      }
+
+      .search-label-icon {
+        background: url('/static/admin/img/search.svg') 0 0 no-repeat;
+        cursor: help;
+        display: inline-block;
+        height: 18px;
+        margin-top: 5px;
+        width: 18px;
+      }
+
+      input {
+        padding: 5px;
+      }
+    }
+
+    .selector-available,
+    .selector-chosen {
+      text-align: center;
+      width: 330px;
+
+      h2 {
+        @extend .p-2;
+        background: $selector-available-title-bg;
+        border-left: 1px solid $selector-item-border-color;
+        border-right: 1px solid $selector-item-border-color;
+        border-top: 1px solid $selector-item-border-color;
+        font-size: 1rem;
+        margin-bottom: 0;
+      }
+
+      select {
+        border-radius: 0;
+        min-height: 200px;
+        width: 100%;
+      }
+    }
+
+    .selector-chosen {
+      h2 {
+        background: $selector-chosen-title-bg;
+      }
+    }
+
+    .selector-chooseall,
+    .selector-clearall {
+      @extend .btn;
+      @extend .btn-light;
+      display: inline-block;
+      margin: 5px auto;
+
+      &:not(.active) {
+        @extend .text-muted;
+      }
+    }
+
+    .selector-chooser {
+      align-self: center;
+      background-color: $selector-chooser-bg;
+      border-radius: 10px;
+      display: inline-block;
+      float: left;
+      margin: 0 15px;
+      padding: 0;
+      width: 22px;
+
+      li {
+        list-style-type: none;
+        margin: 0;
+        padding: 3px;
+      }
+
+      .selector-add {
+        background: url('/static/admin/img/selector-icons.svg') 0 -112px no-repeat;
+      }
+
+      .selector-remove {
+        background: url('/static/admin/img/selector-icons.svg') 0 -80px no-repeat;
+      }
+
+      .selector-add,
+      .selector-remove {
+        cursor: default;
+        display: block;
+        height: 16px;
+        opacity: .3;
+        overflow: hidden;
+        text-indent: -3000px;
+        width: 16px;
+
+        &.active {
+          opacity: 1;
+        }
+      }
+    }
+
+    .add-related {
+      vertical-align: top;
+    }
+
+    .change-related {
+      margin-left: 1rem;
+    }
+
+    .related-lookup {
+      &::before {
+        @extend %font-awesome;
+        content: '\f002';
+        margin-left: 5px;
+      }
+    }
+  }
+
+  label {
+    @extend .pr-3;
+    flex-basis: 100%;
+    text-align: left;
+
+    @include media-breakpoint-up(md) {
+      flex-basis: 20%;
+      text-align: right;
+    }
+
+    @include media-breakpoint-up(lg) {
+      flex-basis: 10%;
+      text-align: right;
+    }
+  }
+
+  .required {
+    font-weight: bold;
+  }
+
+  input[type=text],
+  input[type=number],
+  input[type=email],
+  input[type=date],
+  select[multiple] {
+    @extend .form-control;
+
+    @include media-breakpoint-up(md) {
+      width: auto;
+    }
+  }
+
+  input[type=text][size] {
+    width: auto !important;
+  }
+
+  input[type=text]:not([size]) {
+    @include media-breakpoint-up(md) {
+      min-width: 240px;
+    }
+  }
+
+  textarea {
+    @extend .form-control;
+    resize: both;
+
+    @include media-breakpoint-up(md) {
+      width: auto;
+    }
+  }
+
+  .tabular.inline-related {
+    input[type=text],
+    input[type=number],
+    input[type=email],
+    input[type=date],
+    textarea,
+    select {
+      min-width: auto !important;
+      width: auto;
+    }
+
+    .inline-deletelink {
+      float: none !important;
+    }
+  }
+
+  select[multiple] {
+    display: inline-block;
+  }
+
+  select:not([multiple]):not(.admin-autocomplete) {
+    @extend .custom-select;
+    text-indent: .01px;
+    text-overflow: '';
+
+    @include media-breakpoint-up(md) {
+      width: auto;
+    }
+  }
+
+  // automcomplete
+  .select2-container--admin-autocomplete {
+    min-width: 320px; // m2m
+  }
+
+  .select2-container--admin-autocomplete .select2-selection--single .select2-selection__arrow {
+    height: 34px;
+  }
+
+  .select2-container--admin-autocomplete .select2-selection--single .select2-selection__rendered {
+    line-height: 36px;
+  }
+
+  .select2-container .select2-selection--single {
+    height: 36px;
+  }
+
+  .radiolist {
+    list-style-type: none;
+    padding-left: 0;
+
+    &.inline {
+      li {
+        display: inline-block;
+      }
+    }
+  }
+
+  .help {
+    @extend .form-text;
+    @extend .text-muted;
+    @extend .ml-3;
+    flex-basis: 100% !important;
+    margin-left: 0 !important;
+    margin-top: .5rem;
+    padding-left: 1px;
+
+    @include media-breakpoint-up(md) {
+      margin-left: 20% !important;
+    }
+
+    @include media-breakpoint-up(lg) {
+      margin-left: 10% !important;
+    }
+
+    > ul {
+      padding-left: 1.2rem;
+    }
+  }
+
+  div.help {
+    color: $help-text-color !important;
+  }
+
+  img.help {
+    display: inline-block;
+    margin-left: 0 !important;
+  }
+
+  .collapse {
+    display: block;
+
+    h2 {
+      @extend .p-2;
+      background: $collapse-title-bg;
+      border: 1px solid $collapse-title-border-color;
+      font-size: $h2-size;
+    }
+  }
+
+  .collapsed * {
+    display: none;
+  }
+
+  .collapsed h2 {
+    display: block;
+
+    a {
+      display: inline;
+    }
+  }
+
+  .submit-row {
+    align-items: center;
+    display: flex;
+    flex-basis: baseline;
+    flex-direction: column;
+    margin-top: 15px;
+
+    @include media-breakpoint-up(md) {
+      flex-direction: row-reverse;
+    }
+
+    input[type=submit] {
+      @extend .btn;
+      @extend .btn-success;
+      @extend .ml-1;
+      margin-bottom: 15px;
+      margin-left: auto;
+      order: 1;
+      width: 200px;
+
+      @include media-breakpoint-up(md) {
+        margin-bottom: 0;
+      }
+    }
+
+    .deletelink-box {
+      margin-bottom: 0;
+      margin-left: auto;
+      margin-right: auto;
+      order: 2;
+      text-align: center;
+
+      @include media-breakpoint-up(md) {
+        margin-left: 0;
+      }
+
+      .deletelink {
+        @extend .btn;
+        @extend .btn-danger;
+        width: 200px;
+
+        @include media-breakpoint-up(md) {
+          width: auto;
+        }
+
+        &::before {
+          @extend %font-awesome;
+          content: '\f2ed';
+        }
+      }
+    }
+  }
+
+  .errornote {
+    @extend .alert;
+    @extend .alert-danger;
+    font-weight: bold;
+  }
+
+
+  // fieldsets
+
+  fieldset .description {
+    @extend .pb-3;
+    @extend .pt-3;
+  }
+
+  // inline
+  fieldset .form-row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  fieldset > h2 {
+    background: $fieldset-title-bg;
+    font-size: $h2-size;
+    margin-bottom: 0;
+    padding: 5px 10px;
+
+    + .form-row {
+      margin-top: 15px;
+    }
+  }
+
+  .inline-related {
+    &.empty-form, // stacked inline
+    .empty-form { // tabular
+      display: none !important; // inline extra param
+    }
+
+    h3 {
+      @extend .clearfix;
+      @extend .mt-2;
+      align-items: center;
+      background: $inline-related-title-bg;
+      border-bottom: 1px solid $inline-related-title-border-color;
+      border-top: 5px solid $inline-related-title-border-top-color;
+      display: flex;
+      font-size: 1.1rem;
+      padding: 8px 10px;
+
+      > .delete,
+      > .inline_label + span {
+        margin-left: auto;
+      }
+
+      > .delete {
+        label {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    // datetime fields should not be blocks because are followed by the calendar icon
+    .vDateField {
+      display: inline-block;
+    }
+
+    .errorlist {
+      background: $field-row-error-bg;
+    }
+
+    > .module {
+      @extend .table-responsive;
+      position: relative;
+    }
+
+    table {
+      @extend .table;
+      @extend .table-bordered;
+
+      th {
+        background: $inline-related-title-bg;
+        font-weight: normal !important;
+
+        &.required {
+          font-weight: bold !important;
+        }
+
+        .help-tooltip {
+          height: 15px;
+          margin-top: -3px;
+          width: 15px;
+        }
+      }
+
+      .form-row {
+        display: table-row;
+      }
+
+      .original {
+        border-right: 0px;
+        padding: 0;
+        position: relative;
+        width: 0;
+
+        p {
+          align-items: center;
+          background: $inline-tabular-original-bg;
+          border-bottom: 1px solid $inline-tabular-original-border-color;
+          display: flex;
+          font-size: .9rem;
+          flex-direction: row;
+          left: 14px;
+          padding: 0 4px;
+          position: absolute;
+          top: 8px;
+          white-space: nowrap;
+
+          .inlinechangelink {
+            position: relative;
+            right: -4px;
+          }
+        }
+
+        & + td,
+        & + th {
+          border-left: 0px;
+        }
+      }
+
+      .has_original td {
+        padding-top: 44px;
+      }
+    }
+
+    .inlinechangelink {
+      background: $inline-changelink-bg;
+      font-size: .9rem;
+      margin-left: 8px;
+      padding: 2px 4px;
+
+      &::before {
+        content: '\f040';
+        font-family: 'Font Awesome\ 5 Free';
+        margin-right: 4px;
+      }
+
+      &:hover {
+        background: darken($inline-changelink-bg, 10%);
+        text-decoration: none;
+      }
+    }
+  }
+
+  .add-row {
+    @extend .mb-2;
+
+    a {
+      @extend .btn;
+      @extend .btn-secondary;
+
+      &::before {
+        @extend %font-awesome;
+        content: '\f067';
+      }
+    }
+  }
+
+  .inline-deletelink {
+    @extend .btn;
+    @extend .btn-warning;
+    float: right;
+    margin-right: 15px;
+    white-space: nowrap;
+
+    &::before {
+      @extend %font-awesome;
+      content: '\f00d';
+    }
+  }
+
+  .wrapped-fields-container > * {
+      flex-grow: 0 !important;
+  }
+}

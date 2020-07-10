@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "c1f2b92a-cf34-4b6f-a538-b444c622128b",
+		"name": "DataRobot Decision Engine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Make Decision SOAP request",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "LpzN2DSV2zkSgo9NWtqS",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "aiservices",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:soap=\"soap.datarobot\">\n  <soapenv:Header/>\n  <soapenv:Body>\n    <soap:makeDecision>\n      <!--Optional:-->\n      <soap:id>123</soap:id>\n      <soap:features>\n        <!--Zero or more repetitions:-->\n        <soap:feature name=\"int_rate\">11.49</soap:feature>\n        <soap:feature name=\"sub_grade\">A3</soap:feature>\n        <soap:feature name=\"term\">36 months</soap:feature>\n        <soap:feature name=\"revol_util\">52.7</soap:feature>\n        <soap:feature name=\"title\">Consolidation</soap:feature>\n        <soap:feature name=\"purpose\">school loan refinance</soap:feature>\n        <soap:feature name=\"desc\">school loan</soap:feature>\n        <soap:feature name=\"inq_last_6mths\">8.0</soap:feature>\n        <soap:feature name=\"annual_inc\">10000</soap:feature>\n        <soap:feature name=\"emp_title\">school</soap:feature>\n        <soap:feature name=\"loan_amnt\">25000</soap:feature>\n        <soap:feature name=\"funded_amnt\">25000</soap:feature>\n        <soap:feature name=\"earliest_cr_line\">1/1/01</soap:feature>\n        <soap:feature name=\"addr_state\">MA</soap:feature>\n        <soap:feature name=\"zip_code\">02184</soap:feature>\n      </soap:features>\n      <!--Optional:-->\n      <soap:entity>LoanA</soap:entity>\n    </soap:makeDecision>\n  </soapenv:Body>\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/soapapi/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"soapapi",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Make Decision REST request",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "LpzN2DSV2zkSgo9NWtqS",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "aiservices",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"makeDecision\": {\n        \"id\": \"123\",\n        \"entity\": \"LoanA\",\n        \"features\": [\n           {\"name\": \"int_rate\", \"value\": \"11.49\"},\n           {\"name\": \"sub_grade\", \"value\": \"A3\"},\n           {\"name\": \"term\", \"value\": \"36 months\"},\n           {\"name\": \"revol_util\", \"value\": \"52.7\"},\n           {\"name\": \"title\", \"value\": \"Consolidation\"},\n           {\"name\": \"purpose\", \"value\": \"school loan refinance\"},\n           {\"name\": \"desc\", \"value\": \"school loan\"},\n           {\"name\": \"inq_last_6mths\", \"value\": \"8.0\"},\n           {\"name\": \"annual_inc\", \"value\": \"10000\"},\n           {\"name\": \"emp_title\", \"value\": \"school\"},\n           {\"name\": \"loan_amnt\", \"value\": \"25000\"},\n           {\"name\": \"funded_amnt\", \"value\": \"25000\"},\n           {\"name\": \"earliest_cr_line\", \"value\": \"1/1/01\"},\n           {\"name\": \"addr_state\", \"value\": \"MA\"},\n           {\"name\": \"zip_code\", \"value\": \"02184\"}\n           \n          ]\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/restapi/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"restapi",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

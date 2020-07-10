@@ -1,0 +1,27 @@
+// scss-lint:disable IdSelector PlaceholderInExtend NestingDepth QualifyingElement SelectorDepth ImportantRule
+body[class=" baton-ready"] #content-main > .module {
+  @extend .p-3;
+  @extend .table-responsive;
+  background: $changehistory-bg;
+  border: 1px solid $changehistory-border-color;
+
+  #change-history {
+    @extend .table;
+    @extend .table-bordered;
+
+    thead > tr {
+      background: $rl-head-bg;
+      color: $rl-head-color;
+    }
+
+    tbody tr:nth-child(2n + 1) {
+      background: $rl-tr-odd-bg;
+      color: $rl-tr-odd-color;
+    }
+
+    td,
+    th {
+      padding: .3rem;
+    }
+  }
+}

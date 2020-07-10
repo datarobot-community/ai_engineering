@@ -1,0 +1,11 @@
+{% extends 'admin/base_site.html' %}
+
+{% load static %}
+
+{% block extrastyle %}
+     <link rel="stylesheet" type="text/css" href="{% static "/admin_color.css" %}"/>
+{% endblock %}
+
+{% block nav-global %}
+    <img class="brand_img" src="{% static 'logo/dr-logo-for-dark-bg.svg'%}" width="100" height="50" alt="logo">
+{% endblock %}

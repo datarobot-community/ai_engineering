@@ -1,0 +1,257 @@
+//scss-lint:disable PlaceholderInExtend NestingDepth ImportantRule SelectorDepth
+
+.menu-open .sidebar-menu {
+  left: 0;
+}
+
+body:not(.menu-mobile) {
+  @include media-breakpoint-up(lg) {
+    .sidebar-menu {
+      height: auto;
+      left: 0;
+      position: static;
+      width: auto;
+
+      h1 {
+        i {
+          display: none !important;
+        }
+
+        @include media-breakpoint-up(lg) {
+          &.empty-text {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.sidebar-menu {
+  background: $menu-bg;
+  color: $menu-color;
+  height: 100%;
+  left: -100%;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+
+  h1 {
+    @extend .clearfix;
+    background: $menu-mobile-title-bg;
+    border-bottom: 2px solid $menu-mobile-title-border-color;
+    color: $menu-mobile-title-color;
+    font-size: 1.6rem;
+    margin-bottom: 0;
+    padding: 1rem 16px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 12;
+
+    @include media-breakpoint-up(lg) {
+      background: $menu-title-bg;
+      position: static;
+    }
+
+    i {
+      cursor: pointer;
+      float: right;
+      font-weight: normal;
+      margin-right: 10px;
+      margin-top: 5px;
+    }
+  }
+
+  .depth-0,
+  .depth-1 {
+    background: $menu-bg;
+    height: 100%;
+    left: 0;
+    list-style-type: none;
+    overflow: auto;
+    padding: 0;
+    padding-top: 66px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+
+
+    @include media-breakpoint-up(lg) {
+      height: auto;
+      padding-top: 0;
+      position: static;
+    }
+
+    li {
+      border-bottom: 1px solid $menu-li-border-color;
+      padding: 0;
+
+      a,
+      span {
+        padding: 10px 20px;
+      }
+    }
+
+    a,
+    span {
+      color: $menu-link-color;
+      display: block;
+      outline: 0;
+
+      &:hover {
+        color: $menu-link-hover-color;
+      }
+
+      &.has-children {
+        @extend .clearfix;
+
+        &::after {
+          @extend %font-awesome;
+          content: '\f105';
+          float: right;
+        }
+      }
+
+      i {
+        display: inline-block;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .depth-0 {
+    > li:not(.title) {
+      &:hover {
+        background: $menu-li-hover-bg;
+      }
+    }
+
+    .title {
+      background: $menu-voice-title-bg !important;
+
+      > span {
+        color: $menu-voice-title-color !important;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .depth-1 {
+    display: block;
+    margin-left: -100%;
+    transition: margin-left .0s linear;
+
+    @include media-breakpoint-up(lg) {
+      display: none;
+      margin-left: 0;
+
+      li {
+        padding-left: 10px;
+      }
+    }
+  }
+
+  .title > .depth-1 li {
+    @include media-breakpoint-up(lg) {
+      padding-left: 0;
+    }
+  }
+
+
+  .open {
+    @include media-breakpoint-up(lg) {
+      .has-children {
+        &::after {
+          content: '\f107' !important;
+        }
+      }
+
+      ul,
+      li {
+        background: $menu-selected-sub-bg !important;
+      }
+    }
+
+    > .depth-1 {
+      display: block;
+    }
+
+    .depth-1 {
+      margin-left: 0;
+      z-index: 10;
+    }
+  }
+
+  .default-open {
+    @include media-breakpoint-up(lg) {
+      .has-children {
+        &::after {
+          content: '\f107' !important;
+        }
+      }
+
+      ul,
+      li {
+        background: $menu-selected-sub-bg !important;
+      }
+
+      > .depth-1 {
+        display: block;
+      }
+
+      .depth-1 {
+        margin-left: 0;
+        z-index: 10;
+      }
+    }
+  }
+
+  .nav-back {
+    background: $menu-mobile-back-bg;
+
+    @include media-breakpoint-up(lg) {
+      display: none;
+    }
+  }
+
+  .with-active {
+    @include media-breakpoint-up(lg) {
+      .has-children {
+        &::after {
+          content: '\f107' !important;
+        }
+      }
+
+      ul,
+      li {
+        background: $menu-selected-sub-bg;
+      }
+
+      > .depth-1 {
+        display: block;
+      }
+
+      .depth-1 {
+        margin-left: 0;
+        z-index: 10;
+      }
+    }
+  }
+
+  .active:not(.with-active) {
+    @include media-breakpoint-up(lg) {
+      background: $menu-active-voice-bg !important;
+      border-left: 5px solid $menu-active-voice-border-color;
+      position: relative;
+
+      a {
+        margin-left: -5px;
+      }
+    }
+  }
+}

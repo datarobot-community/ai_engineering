@@ -1,0 +1,346 @@
+// scss-lint:disable IdSelector PlaceholderInExtend NestingDepth QualifyingElement SelectorDepth ImportantRule
+.change-list {
+  #content-main {
+    @extend .container-fluid;
+  }
+
+  .object-tools {
+    .addlink {
+      &::before {
+        content: '\f067';
+      }
+    }
+  }
+
+  #changelist {
+    border: 1px solid $changelist-border-color;
+    clear: both;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+    // no object tools
+    &:first-child {
+      margin-top: 1rem;
+    }
+
+    .toplinks {
+      margin-bottom: 0;
+      padding-left: 0;
+
+      li {
+        background: rgba(0, 0, 0, .1);
+        display: inline-block;
+        padding: .2rem 1rem;
+
+        &.date-back {
+          background: $base;
+          a {
+            color: $white;
+          }
+        }
+      }
+
+      + br {
+        display: none;
+      }
+    }
+
+    .xfull {
+      overflow: auto;
+
+      .toplinks {
+        white-space: nowrap;
+      }
+    }
+
+    .date-icon {
+      &::before {
+        @extend %font-awesome;
+        content: '\f073';
+      }
+    }
+
+    .clock-icon {
+      &::before {
+        @extend %font-awesome;
+        content: '\f017';
+      }
+    }
+
+    #result_list {
+      input[type=text],
+      input[type=number],
+      input[type=email],
+      input[type=date] {
+        @extend .form-control;
+        display: inline;
+        height: 28px;
+        margin: 2px 0;
+        width: auto;
+      }
+    }
+  }
+
+  #toolbar {
+    @extend .mb-0;
+    @extend .p-3;
+    @include make-col(12);
+    background: $toolbar-bg;
+    order: 1;
+  }
+
+  #changelist-search {
+
+    label,
+    input {
+      display: inline-block !important;
+    }
+
+    label {
+      @extend .pr-2;
+      text-align: right;
+    }
+
+    input[type=text] {
+      @extend .form-control;
+      max-width: 160px;
+    }
+
+    input[type=submit] {
+      @extend .btn;
+      @extend .ml-2;
+      background: $toolbar-btn-bg;
+      max-width: 100px;
+
+      &:hover {
+        background: $toolbar-btn-hover-bg;
+      }
+    }
+  }
+
+  .action-counter {
+    display: block;
+
+    @include media-breakpoint-up(sm) {
+      display: inline;
+    }
+  }
+
+  .changelist-filter-toggler {
+    align-items: center;
+    color: $filter-toggler-color !important;
+    cursor: pointer;
+    display: inline;
+    float: right;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    min-height: 39px;
+
+    &.active {
+      background: $primary;
+    }
+
+    &.with-actions {
+      display: flex;
+      flex-direction: row;
+      float: none;
+      margin-bottom: 0;
+      position: absolute;
+      right: 16px;
+      top: 32px;
+    }
+
+    > span {
+      display: none;
+
+      @include media-breakpoint-up(sm) {
+        display: inline-block;
+        margin-left: .5rem;
+      }
+    }
+
+  }
+
+  #changelist-filter {
+    @include make-col(12);
+    background: $filters-bg;
+    order: 3;
+    transition: all .2s linear;
+
+    @include media-breakpoint-up(lg) {
+      @include make-col(0);
+      max-height: 200px;
+      overflow: hidden;
+    }
+
+    h2 {
+      background: $filters-title-bg;
+      color: $filters-title-color;
+      font-size: $h2-size;
+      padding: .5rem 1rem;
+    }
+
+    h3 {
+      font-size: $h3-size;
+      padding: 0 1rem;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 15px;
+
+      .selected {
+        border-left: 5px solid $filter-selected-border-color;
+        margin-left: -15px;
+        padding-left: 10px;
+      }
+    }
+  }
+
+  // show filters
+  &.changelist-filter-active {
+    #changelist-filter {
+      @include media-breakpoint-up(lg) {
+        @include make-col(2);
+        max-height: 100%;
+      }
+    }
+
+    #changelist-form {
+      @include media-breakpoint-up(lg) {
+        @include make-col(10);
+      }
+    }
+  }
+
+  #changelist-filter-modal {
+    @extend .modal-body;
+    @extend #changelist-filter;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    order: 0 !important;
+
+    select {
+      margin-left: 0 !important;
+      width: auto !important;
+    }
+  }
+
+  #changelist-form {
+    @extend .p-3;
+    @include make-col(12);
+    background: $changelist-bg;
+    order: 2;
+    position: relative; // filter icon
+    transition: all .2s linear;
+
+    @include media-breakpoint-up(lg) {
+      @include make-col(12);
+    }
+
+    .actions {
+      label {
+        @extend .pr-2;
+        @include make-col(8);
+      }
+
+      button {
+        @extend .btn;
+        @extend .btn-sm;
+        @extend .btn-light;
+        @extend .ml-2;
+        @extend .mr-2;
+      }
+
+      .all,
+      .question,
+      .clear {
+        display: none;
+      }
+    }
+
+    select {
+      @extend .custom-select;
+      @extend .custom-select-sm;
+      -moz-appearance: none;
+      text-indent: .01px;
+      text-overflow: '';
+    }
+  }
+
+  .results {
+    @extend .mt-2;
+    @extend .table-responsive;
+    background: $changelist-bg;
+
+    table {
+      @extend .table;
+      @extend .table-bordered;
+
+      thead > tr {
+        background: $rl-head-bg;
+        color: $rl-head-color;
+      }
+
+      tbody tr:nth-child(2n + 1) {
+        background: $rl-tr-odd-bg;
+        color: $rl-tr-odd-color;
+      }
+
+      tbody tr.selected {
+        background: $rl-tr-selected-bg;
+        color: $rl-tr-selected-color;
+      }
+
+      .action-checkbox-column {
+        width: 20px;
+
+        .text {
+          padding-right: 0;
+        }
+      }
+
+      th,
+      td {
+        padding: .3rem;
+      }
+    }
+
+    .sortoptions {
+      float: right;
+    }
+
+    th .text {
+      padding-right: 44px;
+    }
+
+    .sorted .sortoptions a {
+      background: url('/static/admin/img/sorting-icons.svg') 0 0 no-repeat;
+      background-size: 14px auto;
+      display: inline-block;
+      height: 14px;
+      position: relative;
+      width: 14px;
+
+      &.sortremove::after {
+        color: $sort-icon-color;
+        content: '\\';
+        font-size: 18px;
+        font-weight: 200;
+        left: 3px;
+        position: absolute;
+        top: -6px;
+      }
+
+      &.descending {
+        background-position: 0 -56px;
+        top: 1px;
+      }
+
+      &.ascending {
+        background-position: 0 -42px;
+      }
+    }
+  }
+}

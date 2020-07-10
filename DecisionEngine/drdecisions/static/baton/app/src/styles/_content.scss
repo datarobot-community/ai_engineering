@@ -1,0 +1,101 @@
+// scss-lint:disable IdSelector PlaceholderInExtend NestingDepth
+
+@include media-breakpoint-up(lg) {
+  .menu-mobile {
+    #content {
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+  }
+}
+
+#content {
+  background: $content-bg;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 0 !important;
+
+  @include media-breakpoint-down(md) {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+
+  > h1 {
+    @extend .mb-0;
+    @extend .p-3;
+    background: $dashboard-title-bg;
+    border-bottom: 2px solid $dashboard-title-border-color;
+    font-size: 1.6rem;
+  }
+
+  .object-tools {
+    @extend .pl-0;
+    @extend .m-2;
+    float: right;
+    list-style-type: none;
+
+    li {
+      display: inline-block;
+    }
+
+    a {
+      @extend .btn;
+      @extend .btn-secondary;
+
+      &::before {
+        @extend %font-awesome;
+      }
+    }
+  }
+}
+
+.messagelist {
+  list-style-type: none;
+  padding: 0;
+
+  .success {
+    @extend .alert;
+    @extend .alert-success;
+    @extend .pl-3;
+
+    &::before {
+      @extend %font-awesome;
+      content: '\f00c';
+    }
+  }
+
+  .info {
+    @extend .alert;
+    @extend .alert-info;
+    @extend .pl-3;
+
+    &::before {
+      @extend %font-awesome;
+      content: '\f05a';
+    }
+  }
+
+  .warning {
+    @extend .alert;
+    @extend .alert-warning;
+    @extend .pl-3;
+
+    &::before {
+      @extend %font-awesome;
+      content: '\f12a';
+    }
+  }
+
+  .error {
+    @extend .alert;
+    @extend .alert-danger;
+    @extend .pl-3;
+
+    &::before {
+      @extend %font-awesome;
+      content: '\f071';
+    }
+  }
+}

@@ -1,0 +1,13 @@
+__pycache__
+build/
+dist/
+*.egg-info/
+*.pypirc
+*.pyc
+*note
+*backup*
+*db.sqlite3
+dockerrun.txt
+settings.json
+launch.json
+dockerrun.txt
