@@ -17,7 +17,7 @@
                 "iam:PassRole"
             ],
             "Resource": [
-                "arn:aws:iam::293058073847:role/ZappaLambdaExecution"
+                "${role_arn}"
             ]
         },
         {
@@ -70,7 +70,7 @@
                 "s3:ListBucket"
             ],
             "Resource": [
-                "arn:aws:s3:::zappa-ftbohi7d"
+                "arn:aws:s3:::${s3_bucket}"
             ]
         },
         {
@@ -85,7 +85,7 @@
                 "s3:ListBucketMultipartUploads"
             ],
             "Resource": [
-                "arn:aws:s3:::zappa-ftbohi7d/*"
+                "arn:aws:s3:::${s3_bucket}/*"
             ]
         },
         {
@@ -107,7 +107,7 @@
             "Action": [
                 "dynamodb:*"
             ],
-            "Resource": "arn:aws:dynamodb:us-east-2:293058073847:table/async-responses"
+            "Resource": "${table_arn}"
         }
     ]
 }
