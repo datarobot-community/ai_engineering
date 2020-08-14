@@ -1,0 +1,227 @@
+{% extends "bootstrap/base.html" %}
+{% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{url_for('static', filename='jquery-3.5.1.min.js') }}">\x3C/script>')</script>
+<script>
+
+function download() {
+    var elem = document.createElement('textarea');
+    elem.innerHTML = "https://{{bucket}}.s3.amazonaws.com/preds/{{filename}}?{{signed_url}}";
+    var url = elem.value;
+    console.log(url);
+    $.ajax({
+        type: "GET",
+        url: url,
+        processData: false,
+        success: function (data) {
+            window.location = url;
+        },
+        error: function (error) {
+            alert(error);
+        }
+    });
+};
+
+
+window.onload = function(){
+
+    if ('{{hov}}'=='True'){
+        $("tr").not(':first').hover(
+            function() {
+                    if(!$(this).hasClass("sel"))
+                        $(this).css("background", "#434e56");
+            },
+            function() {
+                if(!$(this).hasClass("sel"))
+                    $(this).css("background", "");
+            }
+        );
+
+        $("tr").click(function(e) {
+            var table = document.getElementById("table");
+            var selected = table.getElementsByClassName("selected");
+            if (selected[0]) selected[0].className = '';
+            e.target.parentNode.className = 'selected';
+            var row_number = $("tr.selected td").html();
+            var data = {'row_number':row_number,'filename':window.location.pathname}
+            $.ajax({
+                    type: 'POST',
+                    url: "{{url_for('explanations')}}",
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;charset=UTF-8',
+                    success: function(response){
+                        $('.main').html(response);
+                        window.history.pushState({'html':response}, "Title", "/preds#explanations");
+                        
+                    }
+                });
+            
+        });
+    }
+    window.onpopstate = function(e){
+        history.go(0);
+    }
+    
+    $.fn.pageMe = function(opts){
+    var $this = this,
+        defaults = {
+            perPage: 10,
+            showPrevNext: false,
+            hidePageNumbers: false
+        },
+        settings = $.extend(defaults, opts);
+    
+    var listElement = $this;
+    var perPage = 10; 
+    var children = listElement.children();
+    var pager = $('.pager');
+    
+    if (typeof settings.childSelector!="undefined") {
+        children = listElement.find(settings.childSelector);
+    }
+    
+    if (typeof settings.pagerSelector!="undefined") {
+        pager = $(settings.pagerSelector);
+    }
+    
+    var numItems = children.size();
+    var numPages = Math.ceil(numItems/perPage);
+
+    pager.data("curr",0);
+    
+    if (settings.showPrevNext){
+        $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
+    }
+    
+    var curr = 0;
+    while(numPages > curr && (settings.hidePageNumbers==false)){
+        $('<li><a href="#" class="page_link">'+(curr+1)+'</a></li>').appendTo(pager);
+        curr++;
+    }
+    
+    if (settings.showPrevNext){
+        $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
+    }
+    
+    pager.find('.page_link:first').addClass('active');
+    pager.find('.prev_link').hide();
+    if (numPages<=1) {
+        pager.find('.next_link').hide();
+    }
+  	pager.children().eq(1).addClass("active");
+    
+    children.hide();
+    children.slice(0, perPage).show();
+    
+    pager.find('li .page_link').click(function(){
+        var clickedPage = $(this).html().valueOf()-1;
+        goTo(clickedPage,perPage);
+        return false;
+    });
+    pager.find('li .prev_link').click(function(){
+        previous();
+        return false;
+    });
+    pager.find('li .next_link').click(function(){
+        next();
+        return false;
+    });
+    
+    function previous(){
+        var goToPage = parseInt(pager.data("curr")) - 1;
+        goTo(goToPage);
+    }
+     
+    function next(){
+        goToPage = parseInt(pager.data("curr")) + 1;
+        goTo(goToPage);
+    }
+    
+    function goTo(page){
+        var startAt = page * perPage,
+            endOn = startAt + perPage;
+        
+        children.css('display','none').slice(startAt, endOn).show();
+        
+        if (page>=1) {
+            pager.find('.prev_link').show();
+        }
+        else {
+            pager.find('.prev_link').hide();
+        }
+        
+        if (page<(numPages-1)) {
+            pager.find('.next_link').show();
+        }
+        else {
+            pager.find('.next_link').hide();
+        }
+        
+        pager.data("curr",page);
+      	pager.children().removeClass("active");
+        pager.children().eq(page+1).addClass("active");
+    
+    }
+};
+
+    $(document).ready(function(){
+        
+        $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:4});
+        
+    });
+}
+</script>
+{% endblock %}
+{% block title %}Predictions{% endblock %}
+{% block styles -%}
+    {{super()}}
+    <link rel="stylesheet" type="text/css"
+          href="{{url_for('static', filename='main.css')}}">
+{% endblock %}
+{% if not explanations %}
+{% include "base_page.html" %}
+{% endif %}
+{% block content %}
+<div class="container main">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% if explanations %}
+    <h1 id='header'>Explanations</h1>
+    {% else %}
+    <h1 id='header'>{{ title_val }}</h1>
+    {% endif %}
+    
+    <div class="table-responsive">
+        <table id='table' class="{{title_val}} table">
+            <thead>
+                <tr>
+                    {% for col in column_names %}
+                    <th>{{col}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody id="myTable">
+            {% for row in row_data %}
+                <tr>
+                    {% for col, row_ in zip(column_names, row) %}
+                    <td>{{row_}}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12 text-center">
+        <ul class="pagination pagination-lg pager" id="myPager"></ul>
+    </div>
+    <br>
+    {% if not explanations %}
+    <button onclick="download()" class='btn btn-secondary'>Download File</button>
+    {% endif %}
+</div>
+{% endblock %}
+</div>

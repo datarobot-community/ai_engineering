@@ -1,0 +1,181 @@
+{% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{url_for('static', filename='jquery-3.5.1.min.js') }}">\x3C/script>')</script>
+<script> 
+	var printError = function(error, explicit) {
+		alert('Upload error.');
+		console.log(`${explicit ? 'EXPLICIT' : 'INEXPLICIT'}] ${error.name}: ${error.message}`);
+	}
+	var Upload = function (file) {
+		this.file = file;
+	};
+
+	Upload.prototype.doUpload = function () {
+		var that = this;
+
+		// decode signed url
+		var elem = document.createElement('textarea');
+		elem.innerHTML = "https://{{bucket}}.s3.amazonaws.com/uploads/{{filename}}?{{signed_url}}";
+		var url = elem.value;
+		$.ajax({
+			type: "PUT",
+			url: url,
+			data: this.file,
+			contentType: 'text/csv',
+			processData: false,
+			success: function (data) {
+				var uploading = document.getElementById('uploading_space');
+				uploading.innerHTML = 'Scoring...';
+				var form = document.getElementById('my_form');
+				form.submit();
+				
+			},
+			error: function (error) {
+				printError(error);
+			},
+			timeout: 0
+		});
+	};
+
+	window.onload = function(){
+		//parse column names from input file
+		//and add to passthrough cols select UI
+		var input_file = document.getElementById('input_file');
+		var sel = document.getElementById('passthrough');
+		var features = []
+		input_file.onchange = function(e) { 	
+			var f = this.files[0]
+
+			var reader = new FileReader();
+			reader.onload = function(progressEvent){
+				features = this.result.split('\n')[0].split(',');
+				// uploaded_feats = "{{dep_features}}".toLowerCase().split(',')
+				// valid_feats = feats.every(v => uploaded_feats.includes(v));
+				// alert(features);
+				// if (valid_feats == false){
+				// 	alert('Not all required features found in file.');
+				// }
+			};
+			reader.readAsText(f);
+			
+		};
+		var col_bool = document.getElementById('passthrough_bool');
+		col_bool.onchange = function(e) {
+			var space = document.getElementById('passthrough_space')
+			if (col_bool.checked==true){
+				var opt = document.createElement('div');
+				var cols_html = `
+				<br><p>Passthrough Columns</p>
+				<div class="btn-group" role="group"> 
+					<button type="button" class='btn btn-outline-primary btn-sm' id='sel_all'>All</button> 
+					<button type="button" class='btn btn-outline-primary btn-sm' id='sel_none'>None</button> 
+				</div><br>
+				<select multiple id="passthrough_columns" name="passthrough_columns">
+				</select><br><br>`
+
+				space.innerHTML = cols_html
+				var sel = document.getElementById('passthrough_columns');
+				features.forEach(function (item, index) {
+						var opt = document.createElement('option');
+						opt.value = item;
+						opt.innerHTML = item;
+						sel.appendChild(opt);
+				});
+
+				var select = document.getElementById('sel_all');
+				select.onclick = function(e){
+					for ( var i = 0, l = sel.options.length, o; i < l; i++ ){
+						o = sel.options[i];
+						o.selected = true;
+					}
+					document.getElementById('all_cols').value = true;
+				};
+				var select_none = document.getElementById('sel_none');
+				select_none.onclick = function(e){
+					for ( var i = 0, l = sel.options.length, o; i < l; i++ ){
+						o = sel.options[i];
+						o.selected = false;
+					}
+					document.getElementById('all_cols').value = false;
+				};
+				document.getElementById('all_cols').value = false;
+			}
+			else{
+				space.innerHTML = ''
+			}
+			
+		}
+		var space = document.getElementById('passthrough_space')
+		space.onchange = function(){
+			document.getElementById('all_cols').value = false;
+		}
+
+	};
+	function validation(){
+		var file = document.getElementById('input_file').files[0];
+		if (file == null){
+			alert('Please upload a valid file.');
+			return false;
+		}
+
+		var uploading = document.getElementById('uploading_space');
+		uploading.innerHTML = 'Uploading...'
+		var upload = new Upload(file);
+		upload.doUpload();
+		
+		return false;
+	}
+	
+</script>
+{% endblock %}
+{% extends "bootstrap/base.html" %}
+{% block title %}Upload File to Score{% endblock %}
+{% block styles -%}
+    {{super()}}
+    <link rel="stylesheet" type="text/css"
+          href="{{url_for('static', filename='main.css')}}">
+{% endblock %}
+{% include "base_page.html" %}
+{% block content %}
+
+<div class="container">
+	{% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+        {{ message }}
+	</div>
+	{% endfor %}
+	<div class="row">
+		<div class="col">
+			<h1>Score File</h1><br>
+			<input id="input_file" type=file name=file accept=".csv"><br>
+			<form id="my_form" enctype=multipart/form-data method=post>
+			{% if not time_series %}
+			<input type="checkbox" id="explanations" name="explanations" value="explanations">
+			<label for="explanations">Enable Prediction Explanations</label><br>
+			{% endif %}
+			<input type="checkbox" id="passthrough_bool" name="passthrough_bool" value="passthrough_bool">
+			<label for="passthrough_bool">Specify Passthrough Columns</label><br>
+			<div id='passthrough_space'></div>
+			<input type='hidden' id='all_cols' name='all_cols' value='' />
+			<input type="checkbox" id="save_res" name="save_res" value="True">
+			<label for="save_res">Save Results to Audit</label><br>
+			{% if time_series %}
+				<br><label class="shlabel" for="start_date">Start Prediction Date (YYYY-MM-DD):
+					<input class="shinput" type=text name='start_date' id='start_date'><br>
+				</label>
+				<label class="shlabel" for="end_date">End Prediction Date (YYYY-MM-DD):  
+					<input class="shinput" type=text name='end_date' id='end_date'><br>
+				</label>
+				
+			{% endif %}
+			<br><br><input type=button value=Score class="btn btn-primary" onclick="validation()">
+			<div id='uploading_space'></div>
+			</form>
+		</div>
+		<div class="col">
+
+		</div>
+	</div>
+</div>
+{% endblock %}
