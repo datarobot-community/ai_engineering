@@ -1,0 +1,28 @@
+{
+    "prod": {
+        "app_function": "app.app",
+        "aws_region": "<your-aws-region>",
+        "profile_name": "<your-aws-profile-name>",
+        "project_name": "predictorapp",
+        "runtime": "python3.7",
+        "s3_bucket": "<your-copied-s3-bucket",
+        "aws_environment_variables":{
+            "bucket":"<your-custom-s3-bucket>",
+            "aws_secret_access_key":"<your-custom-bucket-aws-secret-key>",
+            "aws_access_key_id":"<your-custom-bucket-aws-access-key>",
+            "secret_key":"<your-custom-bucket-generated-random-string>",
+            "aws_region": "<your-aws-region>"
+            // , "SESSION_TYPE":"redis",
+            // "REDIS_CONN":"redis://:<password@<server>:<port>"
+        },
+        "slim_handler": false,
+        "manage_roles": false,
+        "role_name": "<your-copied-role-name>",
+        "role_arn": "<your-copied_role-arn>" ,
+        "timeout_seconds": 300,
+        "async_resources": true, 
+        "async_response_table": "<your-copied-dynamodb-table>", 
+        "async_response_table_read_capacity": 1, 
+        "async_response_table_write_capacity": 1
+    }
+}
