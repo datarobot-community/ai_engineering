@@ -24,16 +24,12 @@ These are articles created in the DataRobot community by the AI Engineering grou
 [Turning Raw Predictions into Decisions with an API Wrapper](https://community.datarobot.com/t5/resources/turning-raw-predictions-into-decisions-with-an-api-wrapper/ta-p/9195) - Docker, python, django prediction wrapping decision engine \
 [Using Scoring Code Models with AWS Sagemaker](https://community.datarobot.com/t5/resources/using-scoring-code-models-with-aws-sagemaker/ta-p/5558) - AWS SageMaker hosting of a DR java binary scoring code model \
 [Deploy in SageMaker and Monitor with MLOps Agents](https://community.datarobot.com/t5/resources/deploy-in-sagemaker-and-monitor-with-mlops-agents/ta-p/5771) - Monitoring a scoring code model from within a SageMaker container \
-[Deploy and Monitor DataRobot Models in AKS](https) - \
-[test](https://community.datarobot.com/t5/resources/deploy-and-monitor-datarobot-models-in-aks/ta-p/7317) - Deploy DataRobot model (PPS) as docker container on Azure AKS \
+[Deploy and Monitor DataRobot Models in AKS](https://community.datarobot.com/t5/resources/deploy-and-monitor-datarobot-models-in-aks/ta-p/7317) - Deploy DataRobot model (PPS) as docker container on Azure AKS \
 [Deploy and Monitor DataRobot Models on Google Cloud Platform](https://community.datarobot.com/t5/resources/deploy-and-monitor-datarobot-models-on-google-cloud-platform/ta-p/7675) - Deploy DataRobot model (PPS) as docker container on GCP GKE \
 [Deploy and Monitor DataRobot Models on AWS](https://community.datarobot.com/t5/resources/deploy-and-monitor-datarobot-models-on-aws/ta-p/8762) - Deploy DataRobot model (PPS) as docker container on AWS EKS \
 [Path-based routing to Portable Prediction Servers on AWS](https://community.datarobot.com/t5/resources/path-based-routing-to-portable-prediction-servers-on-aws/ta-p/9093) - Routing PPS docker container model requests through a single host/IP entry point \
-[Best Practices for DataRobot Enterprise User Administration](https://community.datarobot.com/t5/resources/best-practices-for-datarobot-enterprise-user-administration/ta-p/9897) - Administration of users/groups/roles \
-[test](https) - \
-[test](https) - \
-[test](https) - \
-[test](https)
+[Best Practices for DataRobot Enterprise User Administration](https://community.datarobot.com/t5/resources/best-practices-for-datarobot-enterprise-user-administration/ta-p/9897) - Administration of users/groups/roles 
+
 
 
 ## Repository Contents
