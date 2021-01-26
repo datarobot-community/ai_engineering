@@ -28,8 +28,12 @@ These are articles created in the DataRobot community by the AI Engineering grou
 [Deploy and Monitor DataRobot Models on Google Cloud Platform](https://community.datarobot.com/t5/resources/deploy-and-monitor-datarobot-models-on-google-cloud-platform/ta-p/7675) - Deploy DataRobot model (PPS) as docker container on GCP GKE \
 [Deploy and Monitor DataRobot Models on AWS](https://community.datarobot.com/t5/resources/deploy-and-monitor-datarobot-models-on-aws/ta-p/8762) - Deploy DataRobot model (PPS) as docker container on AWS EKS \
 [Path-based routing to Portable Prediction Servers on AWS](https://community.datarobot.com/t5/resources/path-based-routing-to-portable-prediction-servers-on-aws/ta-p/9093) - Routing PPS docker container model requests through a single host/IP entry point \
-[Best Practices for DataRobot Enterprise User Administration](https://community.datarobot.com/t5/resources/best-practices-for-datarobot-enterprise-user-administration/ta-p/9897) - Administration of users/groups/roles 
-
+[Best Practices for DataRobot Enterprise User Administration](https://community.datarobot.com/t5/resources/best-practices-for-datarobot-enterprise-user-administration/ta-p/9897) - Administration of users/groups/roles \
+[MLOps Agent with GKE and Pub/Sub](https://community.datarobot.com/t5/resources/mlops-agent-with-gke-and-pub-sub/ta-p/9649) - Creating a MLOps reporting channel and monitoring agent to report data to DR in GCP \
+[Optimizing Real-Time Model Scoring Request Speed](https://community.datarobot.com/t5/resources/optimizing-real-time-model-scoring-request-speed/ta-p/941) - Considerations for real time scoring request performance \
+[Using the Parameterized Batch Scoring Command Line Scripts](https://community.datarobot.com/t5/resources/using-the-parameterized-batch-scoring-command-line-scripts/ta-p/7880) - Using the command line csv scorer for DataRobot deployments \
+[How to run an ML.NET model with DataRobot MLOps](https://community.datarobot.com/t5/resources/how-to-run-an-ml-net-model-with-datarobot-mlops/ta-p/6026) - Deploying a custom ML.NET model in DataRobot for hosting and monitoring \
+[DataRobot Prediction API Usage & HTTP Status Interpretation](https://community.datarobot.com/t5/resources/datarobot-prediction-api-usage-amp-http-status-interpretation/ta-p/966) - Prediction API usage examples scoring through a DataRobot deployment 
 
 
 ## Repository Contents
