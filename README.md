@@ -33,6 +33,7 @@ These are articles created in the DataRobot community by the AI Engineering grou
 [Optimizing Real-Time Model Scoring Request Speed](https://community.datarobot.com/t5/resources/optimizing-real-time-model-scoring-request-speed/ta-p/941) - Considerations for real time scoring request performance \
 [Using the Parameterized Batch Scoring Command Line Scripts](https://community.datarobot.com/t5/resources/using-the-parameterized-batch-scoring-command-line-scripts/ta-p/7880) - Using the command line csv scorer for DataRobot deployments \
 [How to run an ML.NET model with DataRobot MLOps](https://community.datarobot.com/t5/resources/how-to-run-an-ml-net-model-with-datarobot-mlops/ta-p/6026) - Deploying a custom ML.NET model in DataRobot for hosting and monitoring \
+[AWS Lambda Serverless Reporting Actuals to DataRobot MLOps](https://community.datarobot.com/t5/resources/aws-lambda-serverless-reporting-actuals-to-datarobot-mlops/ta-p/9999) - Actuals reporting back to DataRobot based on serverless trigger architecture \
 [DataRobot Prediction API Usage & HTTP Status Interpretation](https://community.datarobot.com/t5/resources/datarobot-prediction-api-usage-amp-http-status-interpretation/ta-p/966) - Prediction API usage examples scoring through a DataRobot deployment 
 
 
