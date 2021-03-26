@@ -36,7 +36,7 @@ pylint==2.5.2
 python-dateutil==2.6.1
 python-slugify==4.0.0
 pytz==2020.1
-PyYAML==5.3.1
+PyYAML==5.4
 redis==3.5.2
 requests==2.23.0.post2+dr
 s3transfer==0.3.3
