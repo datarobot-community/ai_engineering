@@ -28,7 +28,7 @@ These are articles created in the DataRobot community by the AI Engineering grou
 [MLOps Agent with GKE and Pub/Sub](https://community.datarobot.com/t5/resources/mlops-agent-with-gke-and-pub-sub/ta-p/9649) - Creating a MLOps reporting channel and monitoring agent to report data to DR in GCP \
 [AWS Lambda Serverless Reporting Actuals to DataRobot MLOps](https://community.datarobot.com/t5/resources/aws-lambda-serverless-reporting-actuals-to-datarobot-mlops/ta-p/9999) - Actuals reporting back to DataRobot based on serverless trigger architecture \
 [Deploy in SageMaker and Monitor with MLOps Agents](https://community.datarobot.com/t5/resources/deploy-in-sagemaker-and-monitor-with-mlops-agents/ta-p/5771) - Monitoring a DataRobot java scoring code model from within a SageMaker container \
-[Monitoring a SageMaker-Deployed Model in DataRobot MLOps](https://community.datarobot.com/t5/resources/monitoring-a-sagemaker-deployed-model-in-datarobot-mlops/ta-p/9591) - Monitoring a SageMaker developed model hosted on a SageMaker real-time endpoint \
+[Monitoring a SageMaker Deployed Model in DataRobot MLOps](https://community.datarobot.com/t5/resources/monitoring-a-sagemaker-deployed-model-in-datarobot-mlops/ta-p/9591) - Monitoring a SageMaker developed model hosted on a SageMaker real time endpoint \
 [Measuring Prediction Accuracy: Uploading Actual Results](https://community.datarobot.com/t5/resources/measuring-prediction-accuracy-uploading-actual-results/ta-p/7907) - Uploading actual results to DataRobot related to predictions 
 
 ### Portable Prediction Server (PPS) - DataRobot Models in Docker Images Deployed as Containers within Kubernetes
@@ -55,14 +55,6 @@ These are articles created in the DataRobot community by the AI Engineering grou
 [Using DataRobot Prime Models with AWS Lambda](https://community.datarobot.com/t5/resources/using-datarobot-prime-models-with-aws-lambda/ta-p/5567) - Prime (java version) deployment via Lambda \
 [Using Scoring Code Models with AWS Lambda](https://community.datarobot.com/t5/resources/using-scoring-code-models-with-aws-lambda/ta-p/5559) - Java binary scoring code deployment via Lambda \
 [Using Scoring Code Models with AWS Sagemaker](https://community.datarobot.com/t5/resources/using-scoring-code-models-with-aws-sagemaker/ta-p/5558) - AWS SageMaker hosting of a DataRobot java binary scoring code model 
-
-
-## Repository Contents
-
-
-- [Snowflake model creation and scoring](https://github.com/datarobot-community/ai_engineering/tree/master/databases/snowflake)
-- [Athena samples](https://github.com/datarobot-community/ai_engineering/tree/master/databases/athena)
-- [MLNET examples](https://github.com/datarobot-community/ai_engineering/tree/master/mlops)
 
 
 ## Development and Contributing
