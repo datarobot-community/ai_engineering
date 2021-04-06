@@ -7,7 +7,7 @@ This is a repository for the AI Engineering team to share code with customers an
 
 Multiple integrations and projects will be hosted within this repo, see individual readmes in subfolders for details relevant to those individual entries.
 
-## Community Articles
+## Related Community Articles
 
 These are articles created in the DataRobot community by the AI Engineering group, referencing both inline code in the articles, as well as contents in this repository.
 
