@@ -1,4 +1,4 @@
-Django==3.0.7
+Django==3.1.13
 requests==2.24.0
 gunicorn==20.0.4
 django-basicauth==0.5.2
