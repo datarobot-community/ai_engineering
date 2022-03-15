@@ -16,6 +16,8 @@ Additional code examples can be accessed from the following locations:
 
 - To learn to use DataRobot, visit [DataRobot University](https://university.datarobot.com/).
 - For articles on using DataRobot, feature deep dives, and example workflows, visit [DataRobot Community](https://community.datarobot.com/).
+to:
+- To ask questions and get help from DataRobot experts and peers, visit [DataRobot Community](https://community.datarobot.com/)
 
 ## Usage
 
