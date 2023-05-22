@@ -1,5 +1,5 @@
 Django==3.0.7
-requests==2.24.0
+requests==2.31.0
 gunicorn==20.0.4
 django-basicauth==0.5.2
 django-baton==1.8.4
